@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-const MarkdownEditor = dynamic(() => import("./components/MarkdownEditor"), { ssr: false });
+import MarkdownEditor from "./components/MarkdownEditor";
 
 export default function Home() {
   return (

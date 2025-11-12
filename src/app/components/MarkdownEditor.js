@@ -4,27 +4,28 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 
-const DEFAULT_MD = `# Markdown ➜ HTML 預覽器
-...`;
+const DEFAULT_MD = "# Markdown ➜ HTML 預覽器\n\n請在左側輸入 Markdown 文字。";
 
 export default function MarkdownEditor() {
-  const [value, setValue] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("markdown-value");
-      return saved ?? DEFAULT_MD;
-    }
-    return DEFAULT_MD;
-  });
+  const [value, setValue] = useState(DEFAULT_MD);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("markdown-value", value);
-  }, [value]);
+    setMounted(true);
+    const saved = localStorage.getItem("markdown-value");
+    if (saved) setValue(saved); 
+  }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem("markdown-value", value);
+    }
+  }, [value, mounted]);
 
   const markdown = useMemo(() => value, [value]);
 
   return (
     <div className="space-y-4">
-      {/* 父層並阻止自己滾動 */}
       <div className="flex gap-4 h-[80vh] min-h-0 overflow-hidden">
         <textarea
           className="basis-[50%] resize-x overflow-auto min-h-0 p-4 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-mono"
