@@ -8,8 +8,9 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  assetPrefix: "/markdown-preview-nextjs/",
+  output: 'export',
+  basePath: '/markdown-preview-nextjs',
+  assetPrefix: '/markdown-preview-nextjs/',   
   images: {
     unoptimized: true,
   },
