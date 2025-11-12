@@ -4,7 +4,7 @@ self.__BUILD_MANIFEST = {
     "beforeFiles": [
       {
         "source": "/markdown-preview-nextjs//_next/:path+",
-        "destination": "/_next/:path+"
+        "destination": "/markdown-preview-nextjs/_next/:path+"
       }
     ],
     "fallback": []
