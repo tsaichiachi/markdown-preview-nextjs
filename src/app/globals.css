@@ -1,0 +1,69 @@
+/* 直接匯入 Tailwind v4 */
+@import "tailwindcss";
+
+/* 在 v4 用 CSS 的 @plugin 載入外掛（typography） */
+@plugin "@tailwindcss/typography";
+
+/* 匯入 highlight.js 樣式 */
+@import "highlight.js/styles/github-dark.css";
+
+/* 原本的全域樣式 */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Markdown 預覽的排版（需要 typography 外掛） */
+.prose { 
+  max-width: none; 
+}
+
+.prose h1, .prose h2 { 
+  font-weight: bold; 
+}
+
+.prose pre { 
+  background-color: rgb(15 23 42 / 0.7);
+  border-radius: 12px;
+  padding: 16px;
+  overflow: auto;
+}
+
+/* Textarea 樣式 */
+.textarea {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  background: white;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  resize: none;
+  outline: none;
+}
+
+.dark .textarea {
+  background: #1a1a1a;
+  border-color: #404040;
+  color: #e5e5e5;
+}
+
+textarea {
+  @apply bg-white text-gray-900;
+}
+
+.dark textarea {
+  @apply bg-gray-900 text-gray-100;
+}
