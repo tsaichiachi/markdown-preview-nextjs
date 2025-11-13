@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "next build && gh-pages -d out"
+    "deploy": "npm run build && node -e \"require('fs').writeFileSync('out/.nojekyll','')\" && npx gh-pages -d out -b gh-pages -m 'deploy' --dotfiles"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -17,7 +17,7 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.1.17",
     "autoprefixer": "^10.4.22",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",

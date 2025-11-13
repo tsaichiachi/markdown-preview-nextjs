@@ -71,9 +71,12 @@ markdown-preview-nextjs/
 **效果**: 完全解決編譯問題，節省大量除錯時間
 
 #### 2. **React Hydration 錯誤修正**  
-**問題**: SSR 與客戶端渲染不一致  
-**AI 解決方案**: 建議使用 `dynamic import` 並設置 `{ ssr: false }`  
-**效果**: 徹底解決 hydration mismatch 問題
+**問題**: SSR 與客戶端渲染不一致，localStorage 在伺服器端不可用  
+**AI 初始解決方案**: 建議使用 `dynamic import` 並設置 `{ ssr: false }`  
+**地端測試結果**: 成功解決 hydration 問題，本地運作正常  
+**部署問題**: GitHub Pages 無法正確處理 client-side rendering，頁面無法顯示  
+**最終解決方案**: 改用 `mounted` 狀態確保 localStorage 只在客戶端存取  
+**效果**: 保持完整 SSR 渲染，同時解決 hydration mismatch，適合靜態部署
 
 #### 3. **程式碼語法高亮整合**
 **問題**: `rehype-highlight` 無法正常顯示語法高亮  
